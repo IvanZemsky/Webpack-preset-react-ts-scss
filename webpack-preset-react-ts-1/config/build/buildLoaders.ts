@@ -17,7 +17,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
       options: {
          modules: {
             localIdentName: isDev
-               ? "[name]__[local]__[hash:base64:8]"
+               ? "[name]_[local]__[hash:base64:8]"
                : "[hash:base64:8]",
          },
       },

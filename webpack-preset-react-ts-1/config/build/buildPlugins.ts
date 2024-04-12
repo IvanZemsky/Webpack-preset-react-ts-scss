@@ -13,7 +13,7 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
    const plugins: Configuration['plugins'] = [
       new HtmlWebpackPlugin({
          template: options.paths.html,
-         favicon: path.resolve(options.paths.public, 'favicon.ico')
+         //favicon: path.resolve(options.paths.public, 'favicon.ico')
       }),
    ]
 
