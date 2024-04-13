@@ -13,7 +13,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
          {
             loader: "file-loader",
             options: {
-               name: "[name].[hash:base64:8].[ext]", // можно сменить [ext] на webp
+               name: "images/[name].[hash:base64:8].[ext]", // можно сменить [ext] на webp
             },
          },
          {

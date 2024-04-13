@@ -1,5 +1,4 @@
 import styles from "./App.module.scss";
-import samoyed from '@/samoyed.jpg'
 
 const App = () => {
    return (
@@ -10,7 +9,6 @@ const App = () => {
                Эта конфигурация Webpack предназначена для разработки проектов на
                React с использованием TypeScript и SCSS
             </p>
-            <img src={samoyed} alt="" />
          </div>
       </div>
    );
