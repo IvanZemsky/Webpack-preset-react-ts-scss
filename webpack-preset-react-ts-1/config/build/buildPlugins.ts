@@ -4,7 +4,6 @@ import { Configuration } from "webpack";
 import { BuildOptions } from "./types/types";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"
-import path from "path";
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
    const isDev = options.mode === "development";
@@ -15,6 +14,10 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
          template: options.paths.html,
          //favicon: path.resolve(options.paths.public, 'favicon.ico')
       }),
+      new MiniCssExtractPlugin({
+         filename: "css/[name].[contenthash:8].css",
+         chunkFilename: "css/[name].[contenthash:8].css",
+      }),
    ]
 
    if (isDev) {
@@ -24,14 +27,6 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
       plugins.push(
          new ReactRefreshWebpackPlugin()
       )
-   }
-
-   if (isProd) {
-      plugins.push(
-         new MiniCssExtractPlugin({
-         filename: "css/[name].[contenthash:8].css",
-         chunkFilename: "css/[name].[contenthash:8].css",
-      }))
    }
 
    return plugins;

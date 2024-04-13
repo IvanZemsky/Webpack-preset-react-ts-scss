@@ -1,14 +1,32 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { ModuleOptions, ids } from "webpack";
+import { ModuleOptions } from "webpack";
 import { BuildOptions } from "./types/types";
-import ReactRefreshTypeScript from "react-refresh-typescript"
+import ReactRefreshTypeScript from "react-refresh-typescript";
 
 export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
    const isDev = options.mode === "development";
    const isProd = options.mode === "production";
 
+   const webpLoader = {
+      test: /\.(png|jpe?g)$/i,
+      use: [
+         {
+            loader: "file-loader",
+            options: {
+               name: "[name].[hash:base64:8].[ext]", // можно сменить [ext] на webp
+            },
+         },
+         {
+            loader: "webp-loader",
+            options: {
+               quality: 90,
+            },
+         },
+      ],
+   };
+
    const assetLoader = {
-      test: /\.(png|jpg|jpeg|gif|svg)$/i,
+      test: /\.(gif|svg)$/i,
       type: "asset/resource",
    };
 
@@ -32,6 +50,14 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
       ],
    };
 
+   const fontsLoader = {
+      test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      type: "asset/resource",
+      generator: {
+         filename: "fonts/[name].[ext]",
+      },
+   };
+
    const tsLoader = {
       test: /\.tsx?$/,
       exclude: /node_modules/,
@@ -41,10 +67,10 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
             transpileOnly: true,
             getCustomTransformers: () => ({
                before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
-             }),
+            }),
          },
       },
    };
 
-   return [assetLoader, scssLoader, tsLoader];
+   return [webpLoader, assetLoader, scssLoader, fontsLoader, tsLoader];
 }

@@ -1,10 +1,35 @@
+@font-face {
+   font-family: 'Montserrat';
+   src: local('Montserrat-Regular'),
+      url('../../Montserrat-Regular.ttf') format('truetype');
+   font-weight: 400;
+   font-style: normal;
+}
+
+p{
+   margin: 0;
+}
+
+
 .greeting{
    display: flex;
    align-items: center;
    justify-content: center;
    width: 100%;
    height: 90vh;
-   font-size: 36px;
-   font-family: Arial;
+   font-size: 26px;
+   font-family: Montserrat;
    text-align: center;
+
+}
+
+.content{
+   padding: 15px;
+   border-radius: 50px;
+   box-shadow: 0 0 60px 0px rgb(217, 214, 214);
+}
+
+.helloWorld, .text{
+   max-width: 850px;
+   margin: 0 auto;
 }
