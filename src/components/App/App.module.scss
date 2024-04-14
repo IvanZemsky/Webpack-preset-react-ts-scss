@@ -15,12 +15,13 @@ p{
 }
 
 .content{
+   max-width: 850px;
+   margin: 0 auto;
    padding: 15px;
    border-radius: 50px;
    box-shadow: 0 0 60px 0px rgb(217, 214, 214);
 }
 
 .helloWorld, .text{
-   max-width: 850px;
-   margin: 0 auto;
+   text-align: center;
 }
